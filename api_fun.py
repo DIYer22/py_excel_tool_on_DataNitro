@@ -47,44 +47,25 @@ def value_col(col, l, begin=1):
     for i in range(lenn):
         Cell(begin+i, col).value = l[i]
         
-#        
-#l = get_row(1,6)
-#
-#print l
-#
-#raw_input()
-#value_col(9,l)
-#raw_input()
-        
-
-l = get_col(2,43) 
-'''获取第二列的43个单元格的值 放入 l 里面'''
-
-
-def get_qq(mail):
+def get_matrix(x_len, y_len, x_begin=1, y_begin=1):
     '''
-    传入一个邮箱地址 分析是否是 qq号+qq邮箱的格式 是则返回qq号，否则返回 空
+    获取一个矩阵的值，返回二维列表
+    （矩阵的长，矩阵的高，矩阵起始横坐标，矩阵起始纵坐标）
     '''
-    if 'qq.com' in mail:
-        qq = mail.split('@')[0]
-        try:
-            qq = int(qq)
-            return qq
-        except:
-            pass
-    return None
-
-
-l = map(get_qq,l)
-'''
-对l里面的每个元素执行 get_qq() 函数
-'''
-
-value_col(3,l)
-        
-'''
-把l里面的数据写在第3列
-'''   
+    listt = []    
+    for i in range(y_begin, y_begin + y_len):
+        listt += [get_row(i, x_len, x_begin)]
+    return listt
+    
+    
+def value_matrix(listt, x=1, y=1):
+    '''
+    将二维列表的值写入Excel的一块矩阵中
+    （二维列表，矩阵起始横坐标，矩阵起始纵坐标）
+    '''
+    for l in listt:
+        value_row(y,l,x)
+        y += 1
         
         
         
